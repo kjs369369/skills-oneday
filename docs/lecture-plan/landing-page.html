@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>당신의 보고서를 바꿀 AI 비밀무기 3가지 | 무료 온라인 특강</title>
+  <meta name="description" content="3월 14일(토) 무료 온라인 특강. 노트북LM, 제미나이, 클로드, 안티그래비티 4개 AI 도구 조합으로 보고서를 자동 완성하는 비밀무기를 공개합니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0f172a;
+      --navy-light: #1e293b;
+      --blue: #3b82f6;
+      --blue-dark: #2563eb;
+      --blue-glow: rgba(59,130,246,0.3);
+      --cyan: #06b6d4;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --red: #ef4444;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+      --gradient-cta: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      --gradient-card: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(6,182,212,0.08) 100%);
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.06);
+      --shadow-cta: 0 8px 32px rgba(37,99,235,0.35);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-xs: 8px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans KR', -apple-system, sans-serif;
+      color: var(--gray-800);
+      background: var(--white);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+
+    /* ===== CTA Button ===== */
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gradient-cta);
+      color: var(--white);
+      font-size: 18px; font-weight: 700;
+      padding: 18px 48px;
+      border-radius: 60px; border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: var(--shadow-cta);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(37,99,235,0.45); }
+    .cta-btn-full {
+      display: flex; justify-content: center; align-items: center;
+      width: 100%; max-width: 400px; margin: 0 auto;
+    }
+
+    /* ===== SECTION 1: Hero ===== */
+    .hero {
+      background: var(--gradient-hero);
+      padding: 100px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 60% 40%, rgba(59,130,246,0.12) 0%, transparent 60%);
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(59,130,246,0.2);
+      color: var(--blue);
+      font-size: 14px; font-weight: 700;
+      padding: 8px 20px;
+      border-radius: 40px;
+      border: 1px solid rgba(59,130,246,0.3);
+      margin-bottom: 32px;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      color: var(--white);
+      font-size: 44px; font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero-sub {
+      color: var(--gray-400);
+      font-size: 18px; font-weight: 400;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    .hero-meta {
+      display: flex; justify-content: center; gap: 24px;
+      margin-top: 32px;
+      color: var(--gray-400);
+      font-size: 14px;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ===== SECTION 2: Shock ===== */
+    .shock { background: var(--gray-50); }
+    .shock-question {
+      text-align: center;
+      font-size: 28px; font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .shock-answer {
+      text-align: center;
+      font-size: 18px; color: var(--gray-500);
+      margin-bottom: 48px;
+    }
+    .shock-answer strong { color: var(--blue); font-size: 20px; }
+    .ba-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-bottom: 32px;
+    }
+    .ba-card {
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .ba-before {
+      background: var(--gray-100);
+      border: 2px dashed var(--gray-300);
+    }
+    .ba-after {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border: 2px solid var(--blue);
+    }
+    .ba-label {
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .ba-before .ba-label { color: var(--gray-400); }
+    .ba-after .ba-label { color: var(--blue); }
+    .ba-icon { font-size: 48px; margin-bottom: 12px; }
+    .ba-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .ba-desc { font-size: 14px; color: var(--gray-500); }
+    .ba-after .ba-desc { color: var(--blue-dark); }
+    .shock-highlight {
+      text-align: center;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 20px; font-weight: 700;
+      padding: 24px;
+      border-radius: var(--radius-sm);
+      margin-top: 24px;
+    }
+    .shock-highlight em { color: var(--blue); font-style: normal; }
+
+    /* ===== SECTION 3: Pain ===== */
+    .pain-title {
+      text-align: center;
+      font-size: 28px; font-weight: 800;
+      margin-bottom: 40px;
+    }
+    .pain-list { max-width: 520px; margin: 0 auto 40px; }
+    .pain-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      background: var(--white);
+      border-radius: var(--radius-xs);
+      box-shadow: var(--shadow-card);
+      font-size: 17px; font-weight: 500;
+    }
+    .pain-icon {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      background: #fef2f2;
+      color: var(--red);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700;
+    }
+    .pain-solve {
+      text-align: center;
+      background: var(--gradient-card);
+      border: 2px solid rgba(59,130,246,0.15);
+      border-radius: var(--radius);
+      padding: 28px;
+      font-size: 22px; font-weight: 800;
+      color: var(--blue-dark);
+    }
+
+    /* ===== SECTION 4: Target ===== */
+    .target { background: var(--gray-50); }
+    .section-title {
+      text-align: center;
+      font-size: 28px; font-weight: 800;
+      margin-bottom: 48px;
+      color: var(--navy);
+    }
+    .target-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .target-card {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s;
+    }
+    .target-card:hover { transform: translateY(-4px); }
+    .target-emoji { font-size: 40px; margin-bottom: 12px; }
+    .target-role { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+    .target-need { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+    .target-grid .target-card:nth-child(4),
+    .target-grid .target-card:nth-child(5) {
+      grid-column: span 1;
+    }
+
+    /* ===== SECTION 5: Curriculum ===== */
+    .curriculum-timeline { position: relative; max-width: 680px; margin: 0 auto; }
+    .cur-step {
+      display: flex; gap: 24px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .cur-left {
+      flex-shrink: 0;
+      width: 64px;
+      text-align: center;
+    }
+    .cur-time {
+      font-size: 14px; font-weight: 700;
+      color: var(--blue);
+      background: #eff6ff;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .cur-icon { font-size: 28px; }
+    .cur-right {
+      flex: 1;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      border-left: 4px solid var(--blue);
+    }
+    .cur-right h4 {
+      font-size: 17px; font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .cur-right p {
+      font-size: 14px; color: var(--gray-500);
+      line-height: 1.6;
+    }
+    .cur-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 10px;
+    }
+    .tag-lecture { background: #fef3c7; color: #92400e; }
+    .tag-hands-on { background: #d1fae5; color: #065f46; }
+    .tag-demo { background: #ede9fe; color: #5b21b6; }
+    .tag-present { background: #fce7f3; color: #9d174d; }
+
+    /* ===== SECTION 6: Tools ===== */
+    .tools { background: var(--navy); color: var(--white); }
+    .tools .section-title { color: var(--white); }
+    .tools-flow {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px; align-items: start;
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .tool-card {
+      background: var(--navy-light);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      padding: 28px 16px;
+      text-align: center;
+      position: relative;
+    }
+    .tool-card::after {
+      content: '→';
+      position: absolute; right: -18px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue);
+      font-size: 22px; font-weight: 700;
+    }
+    .tool-card:last-child::after { display: none; }
+    .tool-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px;
+      background: var(--blue);
+      border-radius: 50%;
+      font-size: 13px; font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .tool-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .tool-role { font-size: 12px; color: var(--gray-400); }
+    .tools-summary {
+      text-align: center;
+      color: var(--gray-400);
+      font-size: 16px;
+      margin-top: 16px;
+    }
+    .tools-summary strong { color: var(--white); }
+
+    /* ===== SECTION 7: Gallery ===== */
+    .gallery { background: var(--gray-50); }
+    .gallery-ba {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .gallery-ba-card {
+      border-radius: var(--radius);
+      padding: 32px 24px;
+    }
+    .gallery-ba-before {
+      background: var(--white);
+      border: 2px dashed var(--gray-300);
+    }
+    .gallery-ba-after {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border: 2px solid var(--blue);
+    }
+    .gallery-ba-card h4 {
+      font-size: 14px; font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .gallery-ba-before h4 { color: var(--gray-400); }
+    .gallery-ba-after h4 { color: var(--blue); }
+    .gallery-ba-card li {
+      list-style: none;
+      font-size: 15px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .gallery-ba-card li:last-child { border: none; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .gallery-item {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 24px 12px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+    .gallery-item-icon { font-size: 36px; margin-bottom: 8px; }
+    .gallery-item-label { font-size: 13px; font-weight: 600; color: var(--navy); }
+    .gallery-formula {
+      text-align: center;
+      font-size: 18px; font-weight: 700;
+      color: var(--blue-dark);
+      background: var(--gradient-card);
+      padding: 24px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(59,130,246,0.15);
+    }
+
+    /* ===== SECTION 8: Instructor ===== */
+    .instructor-card {
+      display: flex; gap: 40px; align-items: center;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 48px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 40px;
+    }
+    .instructor-photo {
+      flex-shrink: 0;
+      width: 140px; height: 140px;
+      background: var(--gradient-cta);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 56px; color: var(--white);
+    }
+    .instructor-info h3 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+    .instructor-info .instructor-quote {
+      font-size: 16px; color: var(--blue);
+      font-weight: 500;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .instructor-info ul { list-style: none; }
+    .instructor-info li {
+      font-size: 14px; color: var(--gray-500);
+      padding: 4px 0;
+    }
+    .instructor-info li::before {
+      content: '•'; color: var(--blue);
+      font-weight: 700; margin-right: 8px;
+    }
+
+    /* ===== SECTION 9: Benefits ===== */
+    .benefits { background: var(--gray-50); }
+    .benefit-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .benefit-card {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 32px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+    .benefit-icon {
+      width: 56px; height: 56px;
+      background: #eff6ff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin: 0 auto 16px;
+    }
+    .benefit-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .benefit-card p { font-size: 13px; color: var(--gray-500); }
+    .info-table {
+      max-width: 500px; margin: 0 auto;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .info-row {
+      display: flex; padding: 16px 24px;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 15px;
+    }
+    .info-row:last-child { border: none; }
+    .info-label {
+      flex-shrink: 0; width: 100px;
+      font-weight: 600; color: var(--navy);
+    }
+    .info-value { color: var(--gray-600); }
+
+    /* ===== SECTION 10: Final CTA ===== */
+    .final-cta {
+      background: var(--gradient-hero);
+      text-align: center;
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(59,130,246,0.15) 0%, transparent 60%);
+    }
+    .final-cta .container { position: relative; z-index: 1; }
+    .final-cta h2 {
+      color: var(--white);
+      font-size: 36px; font-weight: 900;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    .final-cta h2 span { color: var(--blue); }
+    .final-cta .final-sub {
+      color: var(--gray-400);
+      font-size: 20px;
+      margin-bottom: 40px;
+    }
+    .final-meta {
+      color: var(--gray-400);
+      font-size: 16px;
+      margin-top: 24px;
+    }
+    .final-urgency {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--amber);
+      font-size: 14px; font-weight: 700;
+      background: rgba(245,158,11,0.1);
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(245,158,11,0.3);
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      text-align: center;
+      padding: 40px 0;
+      font-size: 13px;
+      color: var(--gray-400);
+      background: var(--navy);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .hero { padding: 80px 0 60px; }
+      .hero h1 { font-size: 30px; }
+      .hero-sub { font-size: 15px; }
+      .hero-meta { flex-direction: column; gap: 8px; }
+      .section { padding: 60px 0; }
+      .section-title, .shock-question, .pain-title { font-size: 24px; }
+      .ba-grid { grid-template-columns: 1fr; }
+      .target-grid { grid-template-columns: 1fr 1fr; }
+      .tools-flow { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tool-card::after { display: none; }
+      .gallery-ba { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .instructor-card { flex-direction: column; text-align: center; padding: 32px 24px; }
+      .benefit-grid { grid-template-columns: 1fr; }
+      .final-cta h2 { font-size: 26px; }
+      .cta-btn { width: 100%; justify-content: center; padding: 16px 32px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 26px; }
+      .target-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .tools-flow { grid-template-columns: 1fr; }
+      .cur-step { flex-direction: column; gap: 12px; }
+      .cur-left { width: auto; text-align: left; display: flex; align-items: center; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== SECTION 1: Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">3/14(토) 온라인 무료 특강</div>
+    <h1>당신의 보고서를 바꿀<br><span>AI 비밀무기 3가지</span></h1>
+    <p class="hero-sub">노트북LM 필살기 + 클로드 Show Me + 실시간 라이브 데모</p>
+    <a href="#register" class="cta-btn">무료 신청하기 →</a>
+    <div class="hero-meta">
+      <span>📅 3월 14일(토)</span>
+      <span>💻 온라인 Zoom</span>
+      <span>💰 무료</span>
+      <span>⏱️ 2시간</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: Shock ===== -->
+<section class="section shock">
+  <div class="container">
+    <p class="shock-question">이 보고서, 만드는 데<br>몇 분 걸렸을까요?</p>
+    <p class="shock-answer">실제 만든다면? <strong>AI가 만들었을 때 — 30분.</strong></p>
+
+    <div class="ba-grid">
+      <div class="ba-card ba-before">
+        <div class="ba-label">Before</div>
+        <div class="ba-icon">📄</div>
+        <div class="ba-title">텍스트만 가득한 보고서</div>
+        <div class="ba-desc">3일 소요 · 디자인 없음</div>
+      </div>
+      <div class="ba-card ba-after">
+        <div class="ba-label">After</div>
+        <div class="ba-icon">📊</div>
+        <div class="ba-title">AI 시각화 보고서</div>
+        <div class="ba-desc">30분 완성 · 프로 퀄리티</div>
+      </div>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-card ba-before">
+        <div class="ba-label">Before</div>
+        <div class="ba-icon">📋</div>
+        <div class="ba-title">엑셀 표</div>
+        <div class="ba-desc">숫자 나열 · 인사이트 없음</div>
+      </div>
+      <div class="ba-card ba-after">
+        <div class="ba-label">After</div>
+        <div class="ba-icon">📈</div>
+        <div class="ba-title">인터랙티브 차트</div>
+        <div class="ba-desc">한눈에 보이는 트렌드</div>
+      </div>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-card ba-before">
+        <div class="ba-label">Before</div>
+        <div class="ba-icon">🖥️</div>
+        <div class="ba-title">밋밋한 PPT</div>
+        <div class="ba-desc">기본 템플릿 · 설득력 부족</div>
+      </div>
+      <div class="ba-card ba-after">
+        <div class="ba-label">After</div>
+        <div class="ba-icon">🎨</div>
+        <div class="ba-title">프로 슬라이드</div>
+        <div class="ba-desc">맞춤 디자인 · 일관된 브랜딩</div>
+      </div>
+    </div>
+
+    <div class="shock-highlight">
+      "이 보고서는 <em>30분 전에는 세상에 없던 것</em>입니다."
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3: Pain Points ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="pain-title">혹시 이런 고민 있으신가요?</h2>
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="pain-icon">✕</div>
+        자료 수집에 시간의 80%를 쓴다
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">✕</div>
+        PPT 디자인 감각이 없다
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">✕</div>
+        데이터를 차트로 바꾸는 게 귀찮다
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">✕</div>
+        혼자서 리서치·분석·보고서 올인원 해야 한다
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">✕</div>
+        AI 도구가 많아서 뭘 써야 할지 모르겠다
+      </div>
+    </div>
+    <div class="pain-solve">
+      이 5가지 고민, <strong>2시간이면 전부 해결됩니다.</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4: Target ===== -->
+<section class="section target">
+  <div class="container">
+    <h2 class="section-title">이런 분이라면 꼭 들으세요</h2>
+    <div class="target-grid">
+      <div class="target-card">
+        <div class="target-emoji">👔</div>
+        <div class="target-role">기획/마케팅 실무자</div>
+        <div class="target-need">보고서·제안서<br>작업 시간 단축</div>
+      </div>
+      <div class="target-card">
+        <div class="target-emoji">🎤</div>
+        <div class="target-role">1인지식사업자 · 강사</div>
+        <div class="target-need">강의자료·콘텐츠<br>퀄리티 향상</div>
+      </div>
+      <div class="target-card">
+        <div class="target-emoji">🏪</div>
+        <div class="target-role">소상공인</div>
+        <div class="target-need">사업계획서·홍보물<br>직접 제작</div>
+      </div>
+      <div class="target-card">
+        <div class="target-emoji">💼</div>
+        <div class="target-role">컨설턴트 · 프리랜서</div>
+        <div class="target-need">클라이언트 제안서<br>차별화</div>
+      </div>
+      <div class="target-card">
+        <div class="target-emoji">🏛️</div>
+        <div class="target-role">공공기관 담당자</div>
+        <div class="target-need">정책 보고서<br>시각화</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 5: Curriculum ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">2시간, 이렇게 진행됩니다</h2>
+    <div class="curriculum-timeline">
+
+      <div class="cur-step">
+        <div class="cur-left">
+          <span class="cur-time">10분</span><br>
+          <span class="cur-icon">🎯</span>
+        </div>
+        <div class="cur-right">
+          <h4>호스트 인사 & 오프닝</h4>
+          <p>호스트 소개, 강사 연결, 과정 안내</p>
+          <span class="cur-tag tag-lecture">강의</span>
+        </div>
+      </div>
+
+      <div class="cur-step">
+        <div class="cur-left">
+          <span class="cur-time">10분</span><br>
+          <span class="cur-icon">💥</span>
+        </div>
+        <div class="cur-right">
+          <h4>보고서의 종말과 부활</h4>
+          <p>"이 보고서는 30분 전에는 세상에 없던 것입니다."<br>Before/After 충격 사례 3연발</p>
+          <span class="cur-tag tag-lecture">강의</span>
+        </div>
+      </div>
+
+      <div class="cur-step">
+        <div class="cur-left">
+          <span class="cur-time">30분</span><br>
+          <span class="cur-icon">🔬</span>
+        </div>
+        <div class="cur-right">
+          <h4>실습: 노트북LM 숨겨진 필살기</h4>
+          <p>오디오 오버뷰 · 스튜디오 기능 · 딥리서치와 슬라이드·인포그래픽 연결 · 확장프로그램 3종</p>
+          <span class="cur-tag tag-hands-on">실습</span>
+        </div>
+      </div>
+
+      <div class="cur-step">
+        <div class="cur-left">
+          <span class="cur-time">10분</span><br>
+          <span class="cur-icon">🎨</span>
+        </div>
+        <div class="cur-right">
+          <h4>제미나이 스킬 — 맞춤 슬라이드 제작</h4>
+          <p>양식 분석 → 스킬 제작 → 결과물 전후비교<br>(장표 수, 디자인, 일관성 비교)</p>
+          <span class="cur-tag tag-present">시연+결과물 제시</span>
+        </div>
+      </div>
+
+      <div class="cur-step">
+        <div class="cur-left">
+          <span class="cur-time">20분</span><br>
+          <span class="cur-icon">🤖</span>
+        </div>
+        <div class="cur-right">
+          <h4>클로드 Show Me + 스킬 2.0</h4>
+          <p>다이어그램 자동 생성 · 인터랙티브 차트 · 슬라이드 · 글쓰기 · 회의록 요약 · 랜딩페이지 구축 등 비교 시연 + 스킬 제작</p>
+          <span class="cur-tag tag-hands-on">실습</span>
+          <span class="cur-tag tag-demo">시연</span>
+        </div>
+      </div>
+
+      <div class="cur-step">
+        <div class="cur-left">
+          <span class="cur-time">20분</span><br>
+          <span class="cur-icon">🎪</span>
+        </div>
+        <div class="cur-right">
+          <h4>라이브 데모 + 결과물 갤러리</h4>
+          <p>4개 AI 도구를 조합해 보고서 1편 실시간 완성<br>스킬 결과물 5종 공개</p>
+          <span class="cur-tag tag-demo">라이브 데모</span>
+        </div>
+      </div>
+
+      <div class="cur-step">
+        <div class="cur-left">
+          <span class="cur-time">5분</span><br>
+          <span class="cur-icon">🎁</span>
+        </div>
+        <div class="cur-right">
+          <h4>마무리 & 본과정 안내</h4>
+          <p>Q&A · 본과정 소개 · 얼리버드 혜택</p>
+          <span class="cur-tag tag-lecture">안내</span>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="#register" class="cta-btn">무료 신청하기 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 6: Tools ===== -->
+<section class="section tools">
+  <div class="container">
+    <h2 class="section-title">이 4가지 AI 도구를 조합합니다</h2>
+    <div class="tools-flow">
+      <div class="tool-card">
+        <div class="tool-num">1</div>
+        <div class="tool-name">노트북LM</div>
+        <div class="tool-role">자료 수집 · 정리<br>오디오 오버뷰 · 스튜디오</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-num">2</div>
+        <div class="tool-name">제미나이</div>
+        <div class="tool-role">딥리서치 · 분석<br>스킬 제작 · 슬라이드</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-num">3</div>
+        <div class="tool-name">클로드</div>
+        <div class="tool-role">구조화 · 시각화<br>스킬 2.0 · 다이어그램</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-num">4</div>
+        <div class="tool-name">안티그래비티</div>
+        <div class="tool-role">최종 결과물<br>슬라이드 · 인포그래픽</div>
+      </div>
+    </div>
+    <p class="tools-summary">자료수집 → 분석 → 시각화 → 완성<br><strong>이 흐름을 2시간 안에 체험합니다</strong></p>
+  </div>
+</section>
+
+<!-- ===== SECTION 7: Gallery ===== -->
+<section class="section gallery">
+  <div class="container">
+    <h2 class="section-title">스킬 1개로 만든 결과물, 이렇게 다릅니다</h2>
+
+    <div class="gallery-ba">
+      <div class="gallery-ba-card gallery-ba-before">
+        <h4>Before — 일반 프롬프트</h4>
+        <ul>
+          <li>📄 장표 3~5장</li>
+          <li>🎨 디자인 일관성 없음</li>
+          <li>📝 텍스트 위주</li>
+          <li>🔄 매번 처음부터 작성</li>
+        </ul>
+      </div>
+      <div class="gallery-ba-card gallery-ba-after">
+        <h4>After — 맞춤 스킬 적용</h4>
+        <ul>
+          <li>📄 장표 15장 이상</li>
+          <li>🎨 브랜드 일관성 유지</li>
+          <li>📊 시각화 자동 포함</li>
+          <li>⚡ 주제만 바꾸면 자동 생성</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="gallery-item-icon">📊</div>
+        <div class="gallery-item-label">기업 보고서</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-icon">📈</div>
+        <div class="gallery-item-label">마케팅 제안서</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-icon">🎓</div>
+        <div class="gallery-item-label">강의 슬라이드</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-icon">🏪</div>
+        <div class="gallery-item-label">사업계획서</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-item-icon">🏛️</div>
+        <div class="gallery-item-label">정책 보고서</div>
+      </div>
+    </div>
+
+    <div class="gallery-formula">
+      양식 1개 + 스킬 1개 + 주제만 바꾸기 = <strong>프로 수준 결과물</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 8: Instructor ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">강사 소개</h2>
+    <div class="instructor-card">
+      <div class="instructor-photo">👨‍💻</div>
+      <div class="instructor-info">
+        <h3>AICLab 김진수</h3>
+        <p class="instructor-quote">"AI 도구의 공식 매뉴얼에도 없는 숨겨진 기능을 알려드립니다"</p>
+        <ul>
+          <li>AI 비주얼라이즈 & 자동화 전문가</li>
+          <li>클로드 스킬 / 제미나이 Gems 실전 활용</li>
+          <li>기업·공공기관 AI 교육 다수 진행</li>
+          <!-- 추가 경력은 여기에 -->
+        </ul>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <a href="#register" class="cta-btn">무료 신청하기 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 9: Benefits ===== -->
+<section class="section benefits">
+  <div class="container">
+    <h2 class="section-title">참석하시면 이런 혜택이 있습니다</h2>
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">📋</div>
+        <h4>실습 자료 PDF</h4>
+        <p>강의에 사용된 모든 실습 자료를 무료로 제공합니다</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">💎</div>
+        <h4>본과정 얼리버드 할인</h4>
+        <p>특강 참석자 한정 본과정 할인 혜택을 안내드립니다</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🎯</div>
+        <h4>결과물 소유</h4>
+        <p>강의 중 만든 보고서·슬라이드는 모두 본인 소유입니다</p>
+      </div>
+    </div>
+
+    <div class="info-table">
+      <div class="info-row">
+        <div class="info-label">📅 일시</div>
+        <div class="info-value">2026년 3월 14일(토)</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">💻 형태</div>
+        <div class="info-value">온라인 Zoom 라이브</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">💰 참가비</div>
+        <div class="info-value"><strong>무료</strong></div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">⏱️ 소요</div>
+        <div class="info-value">2시간</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">🎒 준비물</div>
+        <div class="info-value">노트북, 구글 계정, 클로드 무료 계정</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 10: Final CTA ===== -->
+<section class="final-cta" id="register">
+  <div class="container">
+    <h2>이 워크플로우를 아는 사람은<br>아직 <span>1%</span>뿐입니다.</h2>
+    <p class="final-sub">먼저 시작하세요.</p>
+    <a href="#" class="cta-btn" style="font-size:20px; padding:20px 56px;">지금 무료 신청하기 →</a>
+    <p class="final-meta">📅 3월 14일(토) &nbsp;|&nbsp; 온라인 Zoom &nbsp;|&nbsp; 무료</p>
+    <div class="final-urgency">⚠️ 선착순 마감 — 지금 신청하세요</div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 AICLab. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

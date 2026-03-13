@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 비주얼라이즈 강의 기획 브리프</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+  :root {
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --accent: #f59e0b;
+    --accent-light: #fef3c7;
+    --success: #10b981;
+    --success-light: #d1fae5;
+    --danger: #ef4444;
+    --danger-light: #fee2e2;
+    --purple: #8b5cf6;
+    --purple-light: #ede9fe;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-800);
+    line-height: 1.7;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #7c3aed 100%);
+    color: white;
+    padding: 60px 40px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .header .subtitle {
+    font-size: 1rem;
+    opacity: 0.85;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+  .header .meta {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Section */
+  .section {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    border: 1px solid var(--gray-200);
+  }
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .num {
+    background: var(--primary);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: var(--gray-100);
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    border-bottom: 2px solid var(--gray-200);
+  }
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: top;
+  }
+  tr:hover td {
+    background: var(--gray-50);
+  }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--primary);
+  }
+  .card .label {
+    font-size: 0.75rem;
+    color: var(--gray-600);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .card .value {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  /* Persona Cards */
+  .persona-card {
+    border-left: 4px solid var(--primary);
+  }
+  .persona-card:nth-child(2) { border-left-color: var(--accent); }
+  .persona-card:nth-child(3) { border-left-color: var(--purple); }
+  .persona-card:nth-child(4) { border-left-color: var(--success); }
+  .persona-card .name-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .persona-card .name-badge .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .persona-card:nth-child(2) .name-badge .avatar { background: var(--accent); }
+  .persona-card:nth-child(3) .name-badge .avatar { background: var(--purple); }
+  .persona-card:nth-child(4) .name-badge .avatar { background: var(--success); }
+  .pain-point {
+    background: var(--danger-light);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    margin: 4px 0;
+  }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 2px 4px 2px 0;
+  }
+  .tag-blue { background: var(--primary-light); color: var(--primary); }
+  .tag-yellow { background: var(--accent-light); color: #92400e; }
+  .tag-green { background: var(--success-light); color: #065f46; }
+  .tag-purple { background: var(--purple-light); color: #5b21b6; }
+
+  /* Workflow Diagram */
+  .workflow {
+    display: flex;
+    gap: 0;
+    margin: 20px 0;
+    overflow-x: auto;
+    padding: 10px 0;
+  }
+  .workflow-step {
+    flex: 1;
+    min-width: 180px;
+    text-align: center;
+    position: relative;
+  }
+  .workflow-step .icon-box {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+  .workflow-step:nth-child(1) .icon-box { background: linear-gradient(135deg, #ef4444, #f97316); }
+  .workflow-step:nth-child(2) .icon-box { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+  .workflow-step:nth-child(3) .icon-box { background: linear-gradient(135deg, #8b5cf6, #a855f7); }
+  .workflow-step:nth-child(4) .icon-box { background: linear-gradient(135deg, #10b981, #14b8a6); }
+  .workflow-step .tool-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  .workflow-step .tool-role {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+  }
+  .workflow-step .tool-features {
+    font-size: 0.75rem;
+    color: var(--gray-600);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+  .workflow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--gray-200);
+    padding: 0 4px;
+    margin-top: -20px;
+  }
+
+  /* Course Tabs */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .tab {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 2px solid var(--gray-200);
+    background: white;
+    transition: all 0.2s;
+  }
+  .tab:hover { border-color: var(--primary); color: var(--primary); }
+  .tab.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    margin: 16px 0;
+  }
+  .timeline-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 4px;
+    align-items: stretch;
+  }
+  .timeline-time {
+    width: 100px;
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    font-weight: 500;
+    padding-top: 10px;
+    text-align: right;
+  }
+  .timeline-dot {
+    width: 24px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .timeline-dot .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    margin-top: 14px;
+    flex-shrink: 0;
+  }
+  .timeline-dot .line {
+    width: 2px;
+    flex: 1;
+    background: var(--gray-200);
+  }
+  .timeline-content {
+    flex: 1;
+    padding: 8px 16px;
+    background: var(--gray-50);
+    border-radius: 8px;
+    margin-bottom: 4px;
+  }
+  .timeline-content h5 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .timeline-content p {
+    font-size: 0.82rem;
+    color: var(--gray-600);
+  }
+  .timeline-item.break .timeline-dot .dot {
+    background: var(--gray-200);
+    width: 8px;
+    height: 8px;
+  }
+  .timeline-item.break .timeline-content {
+    background: transparent;
+    color: var(--gray-600);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  .timeline-item.lecture .timeline-dot .dot { background: var(--primary); }
+  .timeline-item.practice .timeline-dot .dot { background: var(--success); }
+  .timeline-item.demo .timeline-dot .dot { background: var(--accent); }
+
+  /* Promo Section */
+  .promo-section {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 2px solid var(--accent);
+  }
+  .promo-section .section-title {
+    border-bottom-color: var(--accent);
+  }
+
+  .emotion-flow {
+    display: flex;
+    gap: 0;
+    margin: 20px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .emotion-step {
+    text-align: center;
+    padding: 12px 20px;
+  }
+  .emotion-step .emoji {
+    font-size: 2rem;
+    margin-bottom: 4px;
+  }
+  .emotion-step .label {
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  .emotion-step .desc {
+    font-size: 0.75rem;
+    color: var(--gray-600);
+  }
+  .emotion-arrow {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--accent);
+  }
+
+  /* Killer Feature Cards */
+  .killer-card {
+    background: white;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+  }
+  .killer-card::before {
+    content: 'KILLER';
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    background: var(--danger);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+  }
+  .killer-card h4 {
+    color: var(--danger);
+  }
+  .wow-point {
+    background: var(--accent-light);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  /* KSA Section */
+  .ksa-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .ksa-card {
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .ksa-card.knowledge { background: var(--primary-light); border: 1px solid #93c5fd; }
+  .ksa-card.skill { background: var(--success-light); border: 1px solid #6ee7b7; }
+  .ksa-card.attitude { background: var(--purple-light); border: 1px solid #c4b5fd; }
+  .ksa-card h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  .ksa-card ul {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+  }
+  .ksa-card li {
+    font-size: 0.85rem;
+    padding: 4px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .ksa-card li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+  .ksa-card.knowledge li::before { color: var(--primary); }
+  .ksa-card.skill li::before { color: var(--success); }
+  .ksa-card.attitude li::before { color: var(--purple); }
+
+  /* Comparison table */
+  .compare-table {
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .compare-table th:first-child {
+    width: 120px;
+  }
+
+  /* Live Demo Box */
+  .live-demo {
+    background: linear-gradient(135deg, var(--gray-900), #374151);
+    color: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0;
+    font-family: 'Courier New', monospace;
+  }
+  .live-demo h4 {
+    color: var(--accent);
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-bottom: 16px;
+  }
+  .live-demo .step {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    align-items: flex-start;
+  }
+  .live-demo .step-num {
+    background: var(--accent);
+    color: var(--gray-900);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .live-demo .step-text {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .live-demo .step-time {
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header { padding: 40px 24px; }
+    .header h1 { font-size: 1.6rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .ksa-grid { grid-template-columns: 1fr; }
+    .workflow { flex-direction: column; align-items: center; }
+    .workflow-arrow { transform: rotate(90deg); }
+    .tabs { flex-wrap: wrap; }
+    .emotion-flow { flex-direction: column; align-items: center; }
+    .emotion-arrow { transform: rotate(90deg); }
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; }
+    .section { box-shadow: none; break-inside: avoid; }
+    .header { background: var(--gray-900) !important; }
+    .tab-content { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>AI 비주얼라이즈 마스터</h1>
+    <div class="subtitle">리서치에서 보고서까지 — 노트북LM x 제미나이 x 클로드 x 안티그래비티</div>
+    <div class="meta">작성일: 2026-03-13 | AICLab 김진수 | Phase 1 기획 브리프</div>
+  </div>
+
+  <!-- 1. 주제 정의 -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span> 주제 정의</div>
+
+    <h3 style="margin-bottom: 12px; font-size: 1.05rem;">제목 후보</h3>
+    <table>
+      <tr><th>#</th><th>제목</th><th>패턴</th><th>추천</th></tr>
+      <tr><td>A</td><td><strong>AI 비주얼라이즈 마스터: 리서치에서 보고서까지</strong></td><td>핵심키워드 + 결과</td><td><span class="tag tag-blue">원데이용</span></td></tr>
+      <tr><td>B</td><td><strong>AI로 완성하는 설득력 있는 보고서 & 제안서</strong></td><td>도구 + 결과/약속</td><td><span class="tag tag-green">2일용</span></td></tr>
+      <tr><td>C</td><td><strong>데이터가 말하게 하라: AI 시각화 실전 워크숍</strong></td><td>은유 + 핵심키워드</td><td><span class="tag tag-purple">공통</span></td></tr>
+    </table>
+
+    <div style="margin-top: 20px;">
+      <h3 style="font-size: 1.05rem; margin-bottom: 8px;">모객 특강 제목</h3>
+      <div style="background: var(--accent-light); padding: 16px 20px; border-radius: 10px; border-left: 4px solid var(--accent);">
+        <strong style="font-size: 1.1rem; color: #92400e;">"당신의 보고서를 바꿀 AI 비밀무기 3가지"</strong><br>
+        <span style="font-size: 0.85rem; color: var(--gray-600);">부제: 노트북LM 필살기 + 클로드 Show Me + 실시간 데모</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <h3 style="font-size: 1.05rem; margin-bottom: 8px;">강의 범위</h3>
+      <div class="card-grid">
+        <div class="card" style="border-left: 4px solid var(--success);">
+          <h4 style="color: var(--success);">In Scope</h4>
+          <ul style="list-style: none; padding: 0; font-size: 0.88rem;">
+            <li style="padding: 3px 0;">&#10003; AI 딥리서치 (트렌드/경쟁사 분석)</li>
+            <li style="padding: 3px 0;">&#10003; 데이터 시각화 (차트, 인포그래픽)</li>
+            <li style="padding: 3px 0;">&#10003; 인사이트 추출 (다량 자료 분석)</li>
+            <li style="padding: 3px 0;">&#10003; 보고서/제안서 구조화 자동 작성</li>
+            <li style="padding: 3px 0;">&#10003; 프레젠테이션 슬라이드 제작</li>
+            <li style="padding: 3px 0;">&#10003; 4개 도구 연동 E2E 워크플로우</li>
+          </ul>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--danger);">
+          <h4 style="color: var(--danger);">Out of Scope</h4>
+          <ul style="list-style: none; padding: 0; font-size: 0.88rem;">
+            <li style="padding: 3px 0;">&#10007; Python/R 프로그래밍</li>
+            <li style="padding: 3px 0;">&#10007; 통계학 이론</li>
+            <li style="padding: 3px 0;">&#10007; Adobe 디자인 도구</li>
+            <li style="padding: 3px 0;">&#10007; 바이브코딩/챗봇 개발</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 목적 제안 -->
+  <div class="section">
+    <div class="section-title"><span class="num">2</span> 목적 제안</div>
+    <div class="card-grid">
+      <div class="card" style="text-align: center; border-top: 4px solid var(--primary);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">&#9889;</div>
+        <h4>업무 생산성 혁신</h4>
+        <p style="font-size: 0.88rem; color: var(--gray-600);">수작업 3일 &rarr; AI 3시간</p>
+        <div class="tag tag-blue" style="margin-top: 8px;">"같은 시간에 10배의 결과물을"</div>
+      </div>
+      <div class="card" style="text-align: center; border-top: 4px solid var(--accent);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">&#127912;</div>
+        <h4 style="color: var(--accent);">설득력 강화</h4>
+        <p style="font-size: 0.88rem; color: var(--gray-600);">텍스트 &rarr; 비주얼 전환</p>
+        <div class="tag tag-yellow" style="margin-top: 8px;">"보는 순간 설득되는 보고서"</div>
+      </div>
+      <div class="card" style="text-align: center; border-top: 4px solid var(--purple);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">&#129302;</div>
+        <h4 style="color: var(--purple);">AI 리터러시 확보</h4>
+        <p style="font-size: 0.88rem; color: var(--gray-600);">도구 조합 역량</p>
+        <div class="tag tag-purple" style="margin-top: 8px;">"도구를 조합하는 사람이 승리한다"</div>
+      </div>
+      <div class="card" style="text-align: center; border-top: 4px solid var(--success);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">&#128640;</div>
+        <h4 style="color: var(--success);">경쟁 우위 선점</h4>
+        <p style="font-size: 0.88rem; color: var(--gray-600);">남들이 모르는 워크플로우</p>
+        <div class="tag tag-green" style="margin-top: 8px;">"이 조합을 아는 사람은 1%"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 대상 분석 -->
+  <div class="section">
+    <div class="section-title"><span class="num">3</span> 대상 분석 (페르소나)</div>
+
+    <div class="card-grid">
+      <div class="card persona-card">
+        <div class="name-badge">
+          <div class="avatar">이</div>
+          <div>
+            <strong>이정훈 과장</strong> <span class="tag tag-blue">핵심 타겟</span><br>
+            <span style="font-size: 0.8rem; color: var(--gray-600);">38세 | 중견기업 기획팀</span>
+          </div>
+        </div>
+        <div class="label">학습 동기</div>
+        <div class="value">매월 경영진 보고서, 분기별 전략 제안서 작성에 지침</div>
+        <div class="label">페인포인트</div>
+        <div class="pain-point">&#x26A0; 자료 수집에 시간 80% 소모</div>
+        <div class="pain-point">&#x26A0; PPT 디자인 감각 부족</div>
+        <div class="pain-point">&#x26A0; 데이터→차트 변환 번거로움</div>
+      </div>
+
+      <div class="card persona-card">
+        <div class="name-badge">
+          <div class="avatar">박</div>
+          <div>
+            <strong>박수진 대리</strong> <span class="tag tag-yellow">확장 타겟</span><br>
+            <span style="font-size: 0.8rem; color: var(--gray-600);">32세 | 스타트업 마케팅</span>
+          </div>
+        </div>
+        <div class="label">학습 동기</div>
+        <div class="value">시장 트렌드/경쟁사 벤치마킹 리포트를 빠르게</div>
+        <div class="label">페인포인트</div>
+        <div class="pain-point">&#x26A0; 도구가 많아 뭘 써야 할지 모름</div>
+        <div class="pain-point">&#x26A0; 디자이너 없이 예쁘게 만들고 싶음</div>
+        <div class="pain-point">&#x26A0; 상사가 "데이터 기반" 요구</div>
+      </div>
+
+      <div class="card persona-card">
+        <div class="name-badge">
+          <div class="avatar">김</div>
+          <div>
+            <strong>김도현 팀장</strong> <span class="tag tag-purple">확장 타겟</span><br>
+            <span style="font-size: 0.8rem; color: var(--gray-600);">45세 | 경영 컨설턴트</span>
+          </div>
+        </div>
+        <div class="label">학습 동기</div>
+        <div class="value">클라이언트 제안서 비주얼 퀄리티 차별화</div>
+        <div class="label">페인포인트</div>
+        <div class="pain-point">&#x26A0; 리서치+분석+제안서 혼자 올인원</div>
+        <div class="pain-point">&#x26A0; 시각화에 투자할 시간 없음</div>
+        <div class="pain-point">&#x26A0; AI 도구 조합 방법을 모름</div>
+      </div>
+
+      <div class="card persona-card">
+        <div class="name-badge">
+          <div class="avatar">최</div>
+          <div>
+            <strong>최은정 주임</strong> <span class="tag tag-green">니치 타겟</span><br>
+            <span style="font-size: 0.8rem; color: var(--gray-600);">35세 | 지자체 정책기획</span>
+          </div>
+        </div>
+        <div class="label">학습 동기</div>
+        <div class="value">정책 보고서에 데이터 시각화 필요</div>
+        <div class="label">페인포인트</div>
+        <div class="pain-point">&#x26A0; 공공데이터 시각화 방법 모름</div>
+        <div class="pain-point">&#x26A0; 예산 없이 무료 도구만 사용</div>
+        <div class="pain-point">&#x26A0; 정보보안 규정 제한</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 24px; font-size: 1.05rem; margin-bottom: 12px;">타겟 우선순위</h3>
+    <table>
+      <tr><th>우선순위</th><th>대상</th><th>모객 채널</th></tr>
+      <tr><td>&#11088;&#11088;&#11088;</td><td>기업 기획/전략 실무자</td><td>패캠/인프런/기업연수</td></tr>
+      <tr><td>&#11088;&#11088;&#11088;</td><td>마케팅/브랜딩 담당자</td><td>SNS 광고, 마케팅 커뮤니티</td></tr>
+      <tr><td>&#11088;&#11088;</td><td>컨설턴트/프리랜서</td><td>링크드인, 전문 커뮤니티</td></tr>
+      <tr><td>&#11088;&#11088;</td><td>공무원/공공기관</td><td>인재개발원, 공무원 교육</td></tr>
+      <tr><td>&#11088;</td><td>스타트업 대표/PM</td><td>스타트업 네트워크</td></tr>
+    </table>
+  </div>
+
+  <!-- 4. 학습 목표 -->
+  <div class="section">
+    <div class="section-title"><span class="num">4</span> 학습 목표 (KSA Framework)</div>
+
+    <div class="ksa-grid">
+      <div class="ksa-card knowledge">
+        <h4>&#128218; Knowledge</h4>
+        <p style="font-size: 0.8rem; color: var(--gray-600); margin-bottom: 12px;">"알게 된다"</p>
+        <ul>
+          <li>AI 도구 4종의 역할과 강점</li>
+          <li>딥리서치→분석→시각화→보고서 워크플로우</li>
+          <li>효과적 시각화 원칙 (차트, 색상, 레이아웃)</li>
+        </ul>
+      </div>
+      <div class="ksa-card skill">
+        <h4>&#128736; Skill</h4>
+        <p style="font-size: 0.8rem; color: var(--gray-600); margin-bottom: 12px;">"할 수 있다"</p>
+        <ul>
+          <li>노트북LM으로 인사이트 추출</li>
+          <li>제미나이 딥리서치로 분석 보고서 생성</li>
+          <li>클로드로 시각화 + 보고서 구조화</li>
+          <li>안티그래비티로 슬라이드 완성</li>
+          <li>4개 도구 조합 E2E 워크플로우</li>
+        </ul>
+      </div>
+      <div class="ksa-card attitude">
+        <h4>&#128161; Attitude</h4>
+        <p style="font-size: 0.8rem; color: var(--gray-600); margin-bottom: 12px;">"느끼게 된다"</p>
+        <ul>
+          <li>AI 조합으로 전문가급 가능 &rarr; 자신감</li>
+          <li>시각화는 기획자의 영역 &rarr; 주체성</li>
+          <li>워크플로우 재활용 &rarr; 효율성 사고</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 24px; font-size: 1.05rem; margin-bottom: 12px;">성공 기준</h3>
+    <table>
+      <tr><th>Level</th><th>기준</th><th>달성률</th></tr>
+      <tr><td><span class="tag tag-green">L1 최소</span></td><td>4개 도구에 접속하여 기본 기능 1개씩 사용</td><td>100%</td></tr>
+      <tr><td><span class="tag tag-blue">L2 기대</span></td><td>주어진 주제로 AI 시각화 보고서 1편 완성</td><td>80%</td></tr>
+      <tr><td><span class="tag tag-purple">L3 우수</span></td><td>본인 업무 주제로 커스텀 워크플로우 설계</td><td>30%</td></tr>
+    </table>
+  </div>
+
+  <!-- 5. 도구 워크플로우 -->
+  <div class="section">
+    <div class="section-title"><span class="num">5</span> 도구 연동 워크플로우</div>
+
+    <div class="workflow">
+      <div class="workflow-step">
+        <div class="icon-box">&#128214;</div>
+        <div class="tool-name">노트북LM</div>
+        <div class="tool-role">자료 수집 &middot; 정리</div>
+        <div class="tool-features">PDF/웹/영상 소스 정리<br>교차분석 &middot; 핵심요약<br>오디오 오버뷰 &middot; FAQ</div>
+        <div class="tag tag-blue" style="margin-top: 8px;">25%</div>
+      </div>
+      <div class="workflow-arrow">&rarr;</div>
+      <div class="workflow-step">
+        <div class="icon-box">&#128269;</div>
+        <div class="tool-name">제미나이</div>
+        <div class="tool-role">딥리서치 &middot; 분석</div>
+        <div class="tool-features">딥리서치 실행<br>트렌드/경쟁사 분석<br>Gems &middot; 데이터 정제</div>
+        <div class="tag tag-blue" style="margin-top: 8px;">25%</div>
+      </div>
+      <div class="workflow-arrow">&rarr;</div>
+      <div class="workflow-step">
+        <div class="icon-box">&#128302;</div>
+        <div class="tool-name">클로드</div>
+        <div class="tool-role">구조화 &middot; 시각화</div>
+        <div class="tool-features">Artifacts 차트/그래프<br>Show Me 다이어그램<br>보고서 구조 설계</div>
+        <div class="tag tag-purple" style="margin-top: 8px;">30%</div>
+      </div>
+      <div class="workflow-arrow">&rarr;</div>
+      <div class="workflow-step">
+        <div class="icon-box">&#127912;</div>
+        <div class="tool-name">안티그래비티</div>
+        <div class="tool-role">최종 결과물</div>
+        <div class="tool-features">슬라이드 디자인<br>인포그래픽 제작<br>브랜딩 적용</div>
+        <div class="tag tag-green" style="margin-top: 8px;">20%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 과정 구성 -->
+  <div class="section">
+    <div class="section-title"><span class="num">6</span> 과정 구성 (3종)</div>
+
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('a')">A. 원데이 5시간</div>
+      <div class="tab" onclick="switchTab('b')">B. 2일 x 3시간</div>
+      <div class="tab" onclick="switchTab('c')">C. 모객 특강 2시간</div>
+    </div>
+
+    <!-- Tab A: 원데이 -->
+    <div class="tab-content active" id="tab-a">
+      <div style="display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;">
+        <span class="tag tag-blue">이론 90분 (30%)</span>
+        <span class="tag tag-green">실습 150분 (50%)</span>
+        <span class="tag tag-yellow">휴식 40분</span>
+        <span class="tag tag-purple">기타 20분</span>
+      </div>
+      <table>
+        <tr><th>시간</th><th>구간</th><th>내용</th><th>도구</th><th>형태</th></tr>
+        <tr><td>09:00-09:20</td><td>오프닝</td><td>인사, AI 시각화 트렌드, Before/After</td><td>-</td><td><span class="tag tag-blue">강의</span></td></tr>
+        <tr><td>09:20-10:00</td><td><strong>모듈1: 자료의 재발견</strong></td><td>노트북LM 소스 업로드, 교차분석, 요약</td><td>노트북LM</td><td><span class="tag tag-green">강의+실습</span></td></tr>
+        <tr style="background:#f9fafb"><td>10:00-10:10</td><td colspan="4" style="color:var(--gray-600); font-style:italic">쉬는시간 10분</td></tr>
+        <tr><td>10:10-10:55</td><td><strong>모듈2: AI 딥리서치</strong></td><td>제미나이 딥리서치, 트렌드/경쟁사 분석</td><td>제미나이</td><td><span class="tag tag-green">강의+실습</span></td></tr>
+        <tr style="background:#f9fafb"><td>10:55-11:05</td><td colspan="4" style="color:var(--gray-600); font-style:italic">쉬는시간 10분</td></tr>
+        <tr><td>11:05-12:00</td><td><strong>모듈3: 데이터 시각화</strong></td><td>클로드 Artifacts 차트/그래프, Show Me</td><td>클로드</td><td><span class="tag tag-green">강의+실습</span></td></tr>
+        <tr style="background:#fef3c7"><td>12:00-13:00</td><td colspan="4" style="color:#92400e; font-weight:600">점심시간 60분</td></tr>
+        <tr><td>13:00-13:50</td><td><strong>모듈4: 보고서 구조화</strong></td><td>클로드로 보고서 뼈대, 스토리라인</td><td>클로드</td><td><span class="tag tag-green">강의+실습</span></td></tr>
+        <tr style="background:#f9fafb"><td>13:50-14:00</td><td colspan="4" style="color:var(--gray-600); font-style:italic">쉬는시간 10분</td></tr>
+        <tr><td>14:00-14:50</td><td><strong>모듈5: 프로 슬라이드</strong></td><td>안티그래비티로 슬라이드/인포그래픽</td><td>안티그래비티</td><td><span class="tag tag-green">강의+실습</span></td></tr>
+        <tr style="background:#f9fafb"><td>14:50-15:00</td><td colspan="4" style="color:var(--gray-600); font-style:italic">쉬는시간 10분</td></tr>
+        <tr><td>15:00-15:50</td><td><strong>모듈6: 통합 프로젝트</strong></td><td>본인 주제로 E2E 워크플로우, 결과물 완성</td><td>전체</td><td><span class="tag tag-green">실습</span></td></tr>
+        <tr><td>15:50-16:00</td><td>클로징</td><td>베스트 결과물 공유, Q&A, 커뮤니티 안내</td><td>-</td><td><span class="tag tag-purple">발표/Q&A</span></td></tr>
+      </table>
+    </div>
+
+    <!-- Tab B: 2일 -->
+    <div class="tab-content" id="tab-b">
+      <div style="display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;">
+        <span class="tag tag-blue">이론 100분 (28%)</span>
+        <span class="tag tag-green">실습 190분 (53%)</span>
+        <span class="tag tag-yellow">휴식 40분</span>
+        <span class="tag tag-purple">기타 30분</span>
+      </div>
+
+      <h4 style="margin-bottom: 8px; color: var(--primary);">Day 1: 리서치 & 분석 (3시간)</h4>
+      <table>
+        <tr><th>시간</th><th>구간</th><th>내용</th><th>도구</th></tr>
+        <tr><td>09:00-09:20</td><td>오프닝</td><td>인사, 과정 소개, AI 시각화 트렌드</td><td>-</td></tr>
+        <tr><td>09:20-10:10</td><td><strong>모듈1: 노트북LM 마스터</strong></td><td>소스 업로드, 교차분석, 오디오 오버뷰, FAQ, 브리핑</td><td>노트북LM</td></tr>
+        <tr style="background:#f9fafb"><td>10:10-10:20</td><td colspan="3" style="color:var(--gray-600); font-style:italic">쉬는시간 10분</td></tr>
+        <tr><td>10:20-11:20</td><td><strong>모듈2: 제미나이 딥리서치</strong></td><td>딥리서치, 트렌드 분석, 경쟁사 벤치마킹, Gems</td><td>제미나이</td></tr>
+        <tr style="background:#f9fafb"><td>11:20-11:30</td><td colspan="3" style="color:var(--gray-600); font-style:italic">쉬는시간 10분</td></tr>
+        <tr><td>11:30-11:55</td><td><strong>미니 프로젝트</strong></td><td>본인 업무 주제로 리서치 실행</td><td>노트북LM+제미나이</td></tr>
+        <tr><td>11:55-12:00</td><td>Day 1 마무리</td><td>결과물 공유, Day 2 과제 안내</td><td>-</td></tr>
+      </table>
+
+      <div style="background: var(--primary-light); padding: 12px 16px; border-radius: 8px; margin: 16px 0; font-size: 0.88rem;">
+        <strong>Day 1→2 과제:</strong> 본인 업무 관련 자료 3-5개를 노트북LM에 업로드해오기
+      </div>
+
+      <h4 style="margin-bottom: 8px; color: var(--purple);">Day 2: 시각화 & 결과물 (3시간)</h4>
+      <table>
+        <tr><th>시간</th><th>구간</th><th>내용</th><th>도구</th></tr>
+        <tr><td>09:00-09:15</td><td>복습 & 체크인</td><td>Day 1 핵심 복습, 과제 확인</td><td>-</td></tr>
+        <tr><td>09:15-10:15</td><td><strong>모듈3: 클로드 시각화 마스터</strong></td><td>Artifacts 차트/그래프, Show Me, 보고서 구조화</td><td>클로드</td></tr>
+        <tr style="background:#f9fafb"><td>10:15-10:25</td><td colspan="3" style="color:var(--gray-600); font-style:italic">쉬는시간 10분</td></tr>
+        <tr><td>10:25-11:15</td><td><strong>모듈4: 안티그래비티 디자인</strong></td><td>슬라이드 제작, 인포그래픽, 최종 레이아웃</td><td>안티그래비티</td></tr>
+        <tr style="background:#f9fafb"><td>11:15-11:25</td><td colspan="3" style="color:var(--gray-600); font-style:italic">쉬는시간 10분</td></tr>
+        <tr><td>11:25-11:50</td><td><strong>통합 프로젝트</strong></td><td>본인 주제 E2E 워크플로우, 최종 결과물</td><td>전체</td></tr>
+        <tr><td>11:50-12:00</td><td>클로징</td><td>베스트 발표, Q&A, 수료증</td><td>-</td></tr>
+      </table>
+
+      <div style="background: var(--success-light); padding: 12px 16px; border-radius: 8px; margin-top: 16px; font-size: 0.88rem;">
+        <strong>원데이 대비 장점:</strong> 도구별 심화 실습 +1시간 / 과제 기반 맞춤 학습 / 복습 효과
+      </div>
+    </div>
+
+    <!-- Tab C: 모객 특강 -->
+    <div class="tab-content" id="tab-c">
+      <!-- This is the promo section -->
+    </div>
+  </div>
+
+  <!-- 7. 모객 특강 (항상 표시) -->
+  <div class="section promo-section">
+    <div class="section-title"><span class="num" style="background:var(--accent);">&#9733;</span> 모객 특강: "당신의 보고서를 바꿀 AI 비밀무기 3가지"</div>
+
+    <div style="background: white; padding: 16px 20px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem;">
+      <strong>핵심 컨셉:</strong> 본과정 축약이 아닌, <strong>"이런 게 가능해?"</strong>를 보여주는 <em>권위 시연 + 체험 세션</em>
+    </div>
+
+    <!-- 감정 설계 -->
+    <h3 style="font-size: 1.05rem; margin-bottom: 12px;">감정 설계 플로우</h3>
+    <div class="emotion-flow">
+      <div class="emotion-step">
+        <div class="emoji">&#128562;</div>
+        <div class="label">충격</div>
+        <div class="desc">"이게 된다고?"</div>
+      </div>
+      <div class="emotion-arrow">&rarr;</div>
+      <div class="emotion-step">
+        <div class="emoji">&#129321;</div>
+        <div class="label">체험</div>
+        <div class="desc">"나도 되네!"</div>
+      </div>
+      <div class="emotion-arrow">&rarr;</div>
+      <div class="emotion-step">
+        <div class="emoji">&#129327;</div>
+        <div class="label">경탄</div>
+        <div class="desc">"이렇게 조합하면...!"</div>
+      </div>
+      <div class="emotion-arrow">&rarr;</div>
+      <div class="emotion-step">
+        <div class="emoji">&#128293;</div>
+        <div class="label">갈망</div>
+        <div class="desc">"더 배우고 싶다"</div>
+      </div>
+    </div>
+
+    <!-- 타임테이블 -->
+    <h3 style="font-size: 1.05rem; margin: 20px 0 12px;">2시간 타임테이블</h3>
+    <table>
+      <tr><th>시간</th><th>구간</th><th>상세</th><th>형태</th></tr>
+      <tr><td>0:00-0:25</td><td><strong>이슈: 보고서의 종말과 부활</strong></td><td>충격 오프닝 + Before/After 3연발 + 트렌드</td><td><span class="tag tag-blue">강의</span></td></tr>
+      <tr><td>0:25-0:55</td><td><strong>실습1: 노트북LM 필살기</strong></td><td>오디오 오버뷰 + 교차 질문 폭격 + 원클릭 브리핑</td><td><span class="tag tag-green">실습</span></td></tr>
+      <tr style="background:#fff8e1"><td>0:55-1:05</td><td colspan="3" style="color:#92400e; font-style:italic">쉬는시간 10분</td></tr>
+      <tr><td>1:05-1:35</td><td><strong>실습2: 클로드 스킬 2.0</strong></td><td>Show Me 다이어그램 + Artifacts 차트 + 연쇄 생성</td><td><span class="tag tag-green">실습</span></td></tr>
+      <tr><td>1:35-1:55</td><td><strong>시연: 5분의 기적 라이브</strong></td><td>4개 도구 조합 → 보고서 1편 실시간 완성</td><td><span class="tag tag-yellow">시연</span></td></tr>
+      <tr><td>1:55-2:00</td><td>마무리 & 본과정 안내</td><td>본과정 소개, 얼리버드 혜택</td><td><span class="tag tag-purple">안내</span></td></tr>
+    </table>
+
+    <!-- 필살기 상세 -->
+    <h3 style="font-size: 1.05rem; margin: 24px 0 12px;">실습 1: 노트북LM 숨겨진 필살기 3종</h3>
+    <div class="card-grid">
+      <div class="killer-card">
+        <h4>필살기 1: 오디오 오버뷰</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 8px;">PDF 3개 업로드 &rarr; 1분 만에 "팟캐스트" 생성</p>
+        <div class="wow-point">"자료가 대화로 변했다!"</div>
+      </div>
+      <div class="killer-card">
+        <h4>필살기 2: 교차 질문 폭격</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 8px;">서로 다른 소스 비교 질문 &rarr; 숨은 패턴 발견</p>
+        <div class="wow-point">"비교하면 인사이트가 보인다!"</div>
+      </div>
+      <div class="killer-card">
+        <h4>필살기 3: 원클릭 브리핑</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 8px;">"경영진 보고용 브리핑 문서로" &rarr; 구조화된 요약</p>
+        <div class="wow-point">"1시간 걸릴 요약이 30초에!"</div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 1.05rem; margin: 24px 0 12px;">실습 2: 클로드 스킬 2.0 + Show Me</h3>
+    <div class="card-grid">
+      <div class="killer-card">
+        <h4>Show Me 다이어그램</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 8px;">"의사결정 프로세스를 시각화해줘" &rarr; 즉석 플로우차트</p>
+        <div class="wow-point">"텍스트가 그림이 됐다!"</div>
+      </div>
+      <div class="killer-card">
+        <h4>Artifacts 인터랙티브 차트</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 8px;">데이터 입력 &rarr; 실시간 차트 + 인터랙션</p>
+        <div class="wow-point">"엑셀 없이 차트가!"</div>
+      </div>
+      <div class="killer-card">
+        <h4>스킬 2.0 연쇄 생성</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 8px;">프롬프트 하나로 보고서 구조→시각화→슬라이드 텍스트</p>
+        <div class="wow-point">"한 번에 다 된다!"</div>
+      </div>
+    </div>
+
+    <!-- 라이브 데모 -->
+    <h3 style="font-size: 1.05rem; margin: 24px 0 12px;">시연: "5분의 기적" 라이브 데모</h3>
+    <div class="live-demo">
+      <h4>LIVE DEMO: 2026년 커피 시장 트렌드 보고서</h4>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><div class="step-text">노트북LM에 관련 기사 3개 업로드 &rarr; 핵심 인사이트 추출</div><div class="step-time">2분</div></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><div class="step-text">제미나이 딥리서치로 시장 데이터 수집</div><div class="step-time">3분</div></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><div class="step-text">클로드에서 데이터 시각화 + 보고서 구조 생성</div><div class="step-time">5분</div></div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><div class="step-text">안티그래비티에서 최종 슬라이드 완성</div><div class="step-time">5분</div></div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div><div class="step-text">완성된 보고서 리뷰 + 청중 반응 &rarr; 본과정 연결</div><div class="step-time">5분</div></div>
+      </div>
+    </div>
+
+    <!-- 본과정 vs 특강 비교 -->
+    <h3 style="font-size: 1.05rem; margin: 24px 0 12px;">본과정 vs 모객 특강 차별화</h3>
+    <div class="compare-table">
+      <table style="margin: 0;">
+        <tr><th>항목</th><th>본과정</th><th>모객 특강</th></tr>
+        <tr><td><strong>목표</strong></td><td>역량 습득</td><td>호기심 + 권위 각인</td></tr>
+        <tr><td><strong>내용</strong></td><td>체계적 커리큘럼</td><td>임팩트 있는 하이라이트</td></tr>
+        <tr><td><strong>실습</strong></td><td>단계별 따라하기</td><td>"이것도 되네?" 놀라움</td></tr>
+        <tr><td><strong>도구</strong></td><td>4개 도구 균형</td><td>노트북LM + 클로드 집중</td></tr>
+        <tr><td><strong>어조</strong></td><td>친절한 가이드</td><td>전문가의 시크릿 공유</td></tr>
+        <tr><td><strong>CTA</strong></td><td>수료/결과물</td><td>"본과정에서 직접!"</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align: center; padding: 40px 0; color: var(--gray-600); font-size: 0.85rem;">
+    <p><strong>Phase 1 기획 브리프 완료</strong></p>
+    <p>다음: Phase 2 (교수법 설계 + 도구 매트릭스 + 트렌드 리서치)</p>
+    <p style="margin-top: 8px; font-size: 0.75rem;">AICLab &copy; 2026</p>
+  </div>
+
+</div>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
